@@ -1,0 +1,435 @@
+<title>Trajectory 2026–2036</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+  /* Layout: vertical runway with 7 stage markers; cards stagger left/right on wide; stack on phone. */
+  :root {
+    --bg: #f5f3ee;
+    --surface: #ffffff;
+    --ink: #1a1d21;
+    --muted: #5a6168;
+    --rule: #d9d4c7;
+    --accent: #c23b22;      /* vermilion — hazard tape, afterburner */
+    --accent-soft: #f2d8d1;
+    --signal: #1f6b3a;      /* verified */
+    --warn: #b57a00;
+    --spine: #1a1d21;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    --display: 'Space Grotesk', system-ui, sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1013;
+      --surface: #15191e;
+      --ink: #e8e6df;
+      --muted: #8a918a;
+      --rule: #262c33;
+      --accent: #ff5a3c;
+      --accent-soft: #3a1a14;
+      --signal: #4bbf6e;
+      --warn: #e0a848;
+      --spine: #e8e6df;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1013;
+    --surface: #15191e;
+    --ink: #e8e6df;
+    --muted: #8a918a;
+    --rule: #262c33;
+    --accent: #ff5a3c;
+    --accent-soft: #3a1a14;
+    --signal: #4bbf6e;
+    --warn: #e0a848;
+    --spine: #e8e6df;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1180px; margin: 0 auto; padding-block: 56px; padding-inline: 20px; }
+
+  /* Masthead */
+  .mast { border-top: 2px solid var(--spine); border-bottom: 1px solid var(--rule); padding: 20px 0 28px; margin-bottom: 48px; }
+  .mast-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .mast-row b { color: var(--ink); font-weight: 700; }
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 20px 0 10px;
+    text-wrap: balance;
+  }
+  .deck { font-family: var(--display); font-weight: 400; font-size: clamp(18px, 2.2vw, 22px); color: var(--muted); max-width: 56ch; text-wrap: balance; }
+
+  /* Legend / key */
+  .legend { display: flex; gap: 20px 28px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 24px; padding-top: 20px; border-top: 1px dashed var(--rule); }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .dot.phase { background: var(--accent); }
+  .dot.inflect { background: var(--spine); border: 2px solid var(--accent); }
+  .dot.decision { background: transparent; border: 2px solid var(--warn); }
+
+  /* Timeline */
+  .runway { position: relative; margin-top: 24px; }
+  .spine { position: absolute; left: 32px; top: 10px; bottom: 10px; width: 2px; background: var(--spine); }
+
+  .stage { position: relative; padding: 8px 0 44px 72px; }
+  .stage:last-child { padding-bottom: 0; }
+  .marker { position: absolute; left: 24px; top: 10px; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--bg); }
+  .marker.decision { background: var(--surface); border: 2px solid var(--warn); }
+  .marker.terminal { background: var(--spine); }
+
+  .tick { position: absolute; left: 56px; top: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; }
+
+  .stage-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 6px; }
+  .stamp { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .stamp .num { color: var(--muted); margin-right: 8px; }
+  .horizon { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(26px, 3.4vw, 34px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 2px 0 10px;
+    text-wrap: balance;
+  }
+  .role { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+
+  .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 2px; padding: 22px 24px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; }
+  @media (max-width: 720px) { .card { grid-template-columns: 1fr; gap: 18px; padding: 18px; } }
+
+  .block h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; font-weight: 500; }
+  ul { margin: 0; padding-left: 18px; }
+  li { margin-bottom: 6px; }
+  li::marker { color: var(--accent); }
+
+  .figures { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; align-content: start; }
+  .fig { border-top: 1px solid var(--rule); padding-top: 10px; }
+  .fig-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .fig-value { font-family: var(--display); font-weight: 500; font-size: 20px; font-variant-numeric: tabular-nums; line-height: 1.15; margin-top: 4px; letter-spacing: -0.01em; }
+  .fig-note { font-size: 11px; color: var(--muted); margin-top: 2px; font-family: var(--mono); }
+
+  .flags { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .flag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 8px; border: 1px solid var(--rule); color: var(--muted); border-radius: 2px; }
+  .flag.hot { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .flag.gate { color: var(--warn); border-color: var(--warn); }
+
+  /* Decision gate — call-out between stages */
+  .gate-row { position: relative; padding: 0 0 32px 72px; margin-top: -22px; }
+  .gate-row::before { content: ""; position: absolute; left: 24px; top: 6px; width: 18px; height: 18px; border-radius: 50%; background: var(--bg); border: 2px dashed var(--warn); }
+  .gate-row .label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warn); margin-bottom: 6px; }
+  .gate-row .text { font-family: var(--display); font-size: 17px; color: var(--ink); max-width: 60ch; text-wrap: balance; }
+
+  /* Footer */
+  footer { margin-top: 64px; padding-top: 24px; border-top: 2px solid var(--spine); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  footer b { color: var(--ink); font-weight: 700; }
+
+  .ac { color: var(--accent); }
+</style>
+
+<div class="page">
+
+  <header class="mast">
+    <div class="mast-row">
+      <span><b>FILE</b> · wh.career.trajectory</span>
+      <span>CLASSIFICATION · PERSONAL / PLANNING</span>
+      <span>REV · 2026-10-10</span>
+    </div>
+    <h1>Trajectory <span class="ac">2026 → 2036</span></h1>
+    <div class="deck">A ten-year flight plan from Boeing security test conductor to boutique aerospace-security firm. Seven markers. Three decision gates. One defensible niche.</div>
+    <div class="legend">
+      <span><i class="dot phase"></i>Milestone</span>
+      <span><i class="dot inflect"></i>Role inflection</span>
+      <span><i class="dot decision"></i>Decision gate</span>
+      <span>Numbers are planning estimates · verify at execution</span>
+    </div>
+  </header>
+
+  <section class="runway">
+    <div class="spine"></div>
+
+    <!-- 3 MONTHS -->
+    <article class="stage">
+      <span class="marker"></span>
+      <span class="tick">T+00</span>
+      <div class="stage-head">
+        <span class="stamp"><span class="num">01</span>3 Months</span>
+        <span class="horizon">Oct 2026 → Jan 2027</span>
+      </div>
+      <h2>Baseline &amp; portfolio ignition</h2>
+      <div class="role">Current role · Senior Security Test Conductor (Boeing)</div>
+      <div class="card">
+        <div class="block">
+          <h3>Deliverables</h3>
+          <ul>
+            <li>6 HTB Academy CPTS modules complete (enumeration → web app)</li>
+            <li>Resume v2 — audited, placeholder-free, aerospace-forward</li>
+            <li>numnum pushed to a presentable public repo with demo</li>
+            <li>Two engagement-style HTB writeups published</li>
+            <li>Boeing outside-work &amp; IP policy documented</li>
+          </ul>
+          <div class="flags">
+            <span class="flag hot">Must-do</span>
+            <span class="flag">PortSwigger JWT · OAuth</span>
+            <span class="flag">GIAC renewal audit</span>
+          </div>
+        </div>
+        <div class="figures">
+          <div class="fig"><div class="fig-label">Comp target</div><div class="fig-value">Hold</div><div class="fig-note">internal, pre-move</div></div>
+          <div class="fig"><div class="fig-label">Study load</div><div class="fig-value">10–12 h/wk</div><div class="fig-note">sustainable floor</div></div>
+          <div class="fig"><div class="fig-label">Portfolio</div><div class="fig-value">v0.1</div><div class="fig-note">first public artifact</div></div>
+          <div class="fig"><div class="fig-label">Credential</div><div class="fig-value">CPTS prep</div><div class="fig-note">6 / 28 modules</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6 MONTHS -->
+    <article class="stage">
+      <span class="marker"></span>
+      <span class="tick">T+06mo</span>
+      <div class="stage-head">
+        <span class="stamp"><span class="num">02</span>6 Months</span>
+        <span class="horizon">Apr 2027</span>
+      </div>
+      <h2>Technical depth &amp; specialty signal</h2>
+      <div class="role">Still internal · building external optionality</div>
+      <div class="card">
+        <div class="block">
+          <h3>Deliverables</h3>
+          <ul>
+            <li>CPTS exam attempt (first sitting)</li>
+            <li>numnum v1.0 — OWASP API Top-10 coverage, JSON reports, release notes</li>
+            <li>AWS Security baseline + one S3/IAM misconfig writeup</li>
+            <li>End-to-end AD lab engagement documented recon → DA</li>
+            <li>First aerospace-angle blog post (generic, no employer IP)</li>
+          </ul>
+          <div class="flags">
+            <span class="flag hot">CPTS exam</span>
+            <span class="flag">AWS fundamentals</span>
+            <span class="flag">Specialty content</span>
+          </div>
+        </div>
+        <div class="figures">
+          <div class="fig"><div class="fig-label">Market read</div><div class="fig-value">$150–180k</div><div class="fig-note">Sr. Pentester, cleared</div></div>
+          <div class="fig"><div class="fig-label">Portfolio</div><div class="fig-value">v1.0</div><div class="fig-note">interview-ready</div></div>
+          <div class="fig"><div class="fig-label">Specialty</div><div class="fig-value">Named</div><div class="fig-note">aerospace / product sec</div></div>
+          <div class="fig"><div class="fig-label">Credential</div><div class="fig-value">CPTS</div><div class="fig-note">targeted</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Decision gate -->
+    <div class="gate-row">
+      <div class="label">◇ Decision gate · Q3 2027</div>
+      <div class="text">Pass CPTS → begin OSCP, or defer OSCP and open external applications now? Default: finish OSCP first unless an unsolicited offer surfaces.</div>
+    </div>
+
+    <!-- 1 YEAR -->
+    <article class="stage">
+      <span class="marker"></span>
+      <span class="tick">T+01y</span>
+      <div class="stage-head">
+        <span class="stamp"><span class="num">03</span>1 Year</span>
+        <span class="horizon">Oct 2027</span>
+      </div>
+      <h2>External market entry</h2>
+      <div class="role">Senior Penetration Tester / Senior Security Consultant</div>
+      <div class="card">
+        <div class="block">
+          <h3>Deliverables</h3>
+          <ul>
+            <li>CPTS passed; OSCP attempted (passed or in-flight)</li>
+            <li>Personal pentest methodology document — interview artifact</li>
+            <li>3–5 external interviews completed; comp data gathered live</li>
+            <li>Mentoring record documented (named mentees, engagements led)</li>
+            <li>Resume v3 and public bio/one-pager</li>
+          </ul>
+          <div class="flags">
+            <span class="flag hot">Negotiate</span>
+            <span class="flag gate">Stay vs. move</span>
+            <span class="flag">BSides CFP</span>
+          </div>
+        </div>
+        <div class="figures">
+          <div class="fig"><div class="fig-label">Base</div><div class="fig-value">$150–200k</div><div class="fig-note">Sr. Pentester, Seattle/remote</div></div>
+          <div class="fig"><div class="fig-label">Total comp</div><div class="fig-value">$170–230k</div><div class="fig-note">base + bonus</div></div>
+          <div class="fig"><div class="fig-label">Specialty premium</div><div class="fig-value">+$10–25k</div><div class="fig-note">clearance + aerospace</div></div>
+          <div class="fig"><div class="fig-label">Credentials</div><div class="fig-value">CPTS · OSCP</div><div class="fig-note">GPEN already held</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4 YEARS -->
+    <article class="stage">
+      <span class="marker inflect"></span>
+      <span class="tick">T+04y</span>
+      <div class="stage-head">
+        <span class="stamp"><span class="num">04</span>4 Years</span>
+        <span class="horizon">Oct 2030 · inflection</span>
+      </div>
+      <h2>Principal / Lead Consultant</h2>
+      <div class="role">Boutique consultancy or defense prime technical lead</div>
+      <div class="card">
+        <div class="block">
+          <h3>Deliverables</h3>
+          <ul>
+            <li>Owned complex assessments end-to-end: scope → delivery → remediation</li>
+            <li>Methodology, SOW, and test-plan templates authored for the practice</li>
+            <li>Original research or CVE / conference talk accepted</li>
+            <li>Formal mentoring across multiple consultants</li>
+            <li>Public specialty library — 10+ pieces, aerospace / embedded lean</li>
+          </ul>
+          <div class="flags">
+            <span class="flag hot">Principal title</span>
+            <span class="flag">CRTO (optional)</span>
+            <span class="flag">Pre-sales rep</span>
+          </div>
+        </div>
+        <div class="figures">
+          <div class="fig"><div class="fig-label">Base</div><div class="fig-value">$180–250k</div><div class="fig-note">Principal / Lead</div></div>
+          <div class="fig"><div class="fig-label">Total comp</div><div class="fig-value">$210–300k</div><div class="fig-note">bonus / RSU added</div></div>
+          <div class="fig"><div class="fig-label">Visibility</div><div class="fig-value">Named</div><div class="fig-note">in a specialty</div></div>
+          <div class="fig"><div class="fig-label">Pipeline</div><div class="fig-value">Warm</div><div class="fig-note">first inbound inquiries</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Decision gate -->
+    <div class="gate-row">
+      <div class="label">◇ Decision gate · 2030–2031</div>
+      <div class="text">Director track inside a firm, or begin independent consulting prep? No-go on independence until policy, insurance, 6-month reserve, and family alignment all check.</div>
+    </div>
+
+    <!-- 6 YEARS -->
+    <article class="stage">
+      <span class="marker inflect"></span>
+      <span class="tick">T+06y</span>
+      <div class="stage-head">
+        <span class="stamp"><span class="num">05</span>6 Years</span>
+        <span class="horizon">Oct 2032 · inflection</span>
+      </div>
+      <h2>Independent consultant · year one</h2>
+      <div class="role">Solo practice · aerospace / embedded product security</div>
+      <div class="card">
+        <div class="block">
+          <h3>Deliverables</h3>
+          <ul>
+            <li>WA LLC formed · E&amp;O + GL + cyber liability in force</li>
+            <li>Standard MSA / SOW / rate card reviewed by counsel</li>
+            <li>One anchor retainer client + two project engagements landed</li>
+            <li>Quarterly estimated tax &amp; bookkeeping cadence operating</li>
+            <li>Service catalog narrowed to 2–3 offerings; the rest declined</li>
+          </ul>
+          <div class="flags">
+            <span class="flag hot">Entity live</span>
+            <span class="flag gate">Reserve ≥ 6 mo</span>
+            <span class="flag">Retainer first</span>
+          </div>
+        </div>
+        <div class="figures">
+          <div class="fig"><div class="fig-label">Rate</div><div class="fig-value">$225–300/hr</div><div class="fig-note">starting band</div></div>
+          <div class="fig"><div class="fig-label">Gross (yr 1)</div><div class="fig-value">$240–360k</div><div class="fig-note">1,100–1,300 billable</div></div>
+          <div class="fig"><div class="fig-label">Owner earnings</div><div class="fig-value">$140–220k</div><div class="fig-note">after costs, est.</div></div>
+          <div class="fig"><div class="fig-label">Utilization</div><div class="fig-value">55–65%</div><div class="fig-note">realistic yr-1</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8 YEARS -->
+    <article class="stage">
+      <span class="marker"></span>
+      <span class="tick">T+08y</span>
+      <div class="stage-head">
+        <span class="stamp"><span class="num">06</span>8 Years</span>
+        <span class="horizon">Oct 2034</span>
+      </div>
+      <h2>Established practice · scale decision</h2>
+      <div class="role">Senior independent · evaluating boutique firm formation</div>
+      <div class="card">
+        <div class="block">
+          <h3>Deliverables</h3>
+          <ul>
+            <li>12+ consecutive months of referral-driven pipeline</li>
+            <li>Turning away work you want to keep — the signal to hire</li>
+            <li>Fractional advisory retainers established as income floor</li>
+            <li>Named in the aerospace / embedded security community</li>
+            <li>First subcontractor or 1099 associate engaged for overflow</li>
+          </ul>
+          <div class="flags">
+            <span class="flag hot">Hire or hold</span>
+            <span class="flag">Retainers &gt; projects</span>
+            <span class="flag gate">Niche defended</span>
+          </div>
+        </div>
+        <div class="figures">
+          <div class="fig"><div class="fig-label">Rate</div><div class="fig-value">$300–400/hr</div><div class="fig-note">specialty premium</div></div>
+          <div class="fig"><div class="fig-label">Gross</div><div class="fig-value">$450–600k</div><div class="fig-note">1,300–1,500 billable</div></div>
+          <div class="fig"><div class="fig-label">Owner earnings</div><div class="fig-value">$280–400k</div><div class="fig-note">after costs</div></div>
+          <div class="fig"><div class="fig-label">Reserve</div><div class="fig-value">12 mo</div><div class="fig-note">operating buffer</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Decision gate -->
+    <div class="gate-row">
+      <div class="label">◇ Decision gate · 2034–2035</div>
+      <div class="text">Stay a sought-after solo (lower risk, higher per-hour) or form the firm (higher ceiling, payroll stress, hiring)? Delay until an anchor client signs a multi-engagement MSA.</div>
+    </div>
+
+    <!-- 10 YEARS -->
+    <article class="stage">
+      <span class="marker terminal"></span>
+      <span class="tick">T+10y</span>
+      <div class="stage-head">
+        <span class="stamp"><span class="num">07</span>10 Years</span>
+        <span class="horizon">Oct 2036 · terminal planning horizon</span>
+      </div>
+      <h2>Boutique firm · founder &amp; principal</h2>
+      <div class="role">3–6 consultants · aerospace / embedded security practice</div>
+      <div class="card">
+        <div class="block">
+          <h3>State at horizon</h3>
+          <ul>
+            <li>Firm of 3–6 consultants with defined ladder &amp; QA process</li>
+            <li>Two anchor clients, no single-client concentration above 30%</li>
+            <li>Delivery methodology that scales beyond the founder's hours</li>
+            <li>Pipeline sourced from research, speaking, and referrals — not cold outreach</li>
+            <li>Succession option — the firm has value even if you step back</li>
+          </ul>
+          <div class="flags">
+            <span class="flag hot">Founder</span>
+            <span class="flag">Niche defended</span>
+            <span class="flag">Hired &amp; retained</span>
+          </div>
+        </div>
+        <div class="figures">
+          <div class="fig"><div class="fig-label">Firm revenue</div><div class="fig-value">$1.5–3M</div><div class="fig-note">yr 4–6 range</div></div>
+          <div class="fig"><div class="fig-label">Owner comp</div><div class="fig-value">$350–600k</div><div class="fig-note">salary + distributions</div></div>
+          <div class="fig"><div class="fig-label">Headcount</div><div class="fig-value">3–6</div><div class="fig-note">incl. founder</div></div>
+          <div class="fig"><div class="fig-label">Autonomy</div><div class="fig-value">Full</div><div class="fig-note">by design, not accident</div></div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <footer>
+    <span><b>Primary path</b> — Technical Leadership → Independent → Firm</span>
+    <span>Alt — Hold at Principal / Director inside a defense prime</span>
+    <span>Review quarterly · update when evidence changes</span>
+  </footer>
+
+</div>
