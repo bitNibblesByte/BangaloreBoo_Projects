@@ -17,11 +17,13 @@ You are an experienced Boeing security professional (Technology & Engineering Se
 - You already have the hands-on offensive foundation most consultants spend years building.
 
 **Immediate next 90 days (must-do):**
-1. Finish 6 more CPTS modules (web app + AD focus).
+1. OSCP-focused prep — HTB OSCP-like boxes, buffer on AD and web pivots; schedule the exam.
 2. Push "numnum" to a presentable public GitHub state (README, screenshots, one OWASP API finding demo).
 3. Rewrite resume for external consulting market (see §6).
 4. Begin PortSwigger Web Security Academy JWT/OAuth/SSRF tracks.
 5. Document Boeing conflict-of-interest / outside-work policy before any paid side work.
+
+> **Certification sequence note.** You've found CPTS harder than the OSCP material (your words — matches the broader consensus that CPTS's 25-day blind exam demands deeper AD + pivoting + reporting). We've inverted the earlier plan: **OSCP first (faster path to a widely recognized credential), then CPTS as the depth credential later**. CPTS modules continue in parallel as a learning track, but the exam is deferred until after OSCP.
 
 **Compensation targets (defensible, see §3 for sources & assumptions):**
 - Senior Pentester (Seattle/remote, cleared or clearable): **$150k–$200k base, $170k–$230k total.**
@@ -47,7 +49,7 @@ You are an experienced Boeing security professional (Technology & Engineering Se
 | Bachelor's in Cybersecurity (second attempt) started ~June 2026 | Notion Career Plan | **Needs verification** — institution not named |
 | GIAC GPEN, GCIH, GSEC, GFACT | User-reported | Prompt — verify current/expired status |
 | CompTIA Security+ | User-reported | Prompt |
-| Active study: CPTS (3/28 modules), OSCP prep, PortSwigger, TCM, HTB | Notion |
+| Active study: OSCP prep (primary), CPTS modules (secondary, 3/28), PortSwigger, TCM, HTB | Notion + user correction (CPTS harder than OSCP) |
 | "numnum" Python assessment tool: modular, SQLite, Nmap recon, resume/retry | User-reported — **not yet public portfolio-ready** |
 | Residence: Kent, WA area; family (two children) | Notion |
 | Clearance status | **Unknown — must verify.** Many defense/aerospace roles require active clearance |
@@ -225,7 +227,7 @@ GIAC GCIH — Certified Incident Handler                         [VERIFY: date /
 GIAC GSEC — Security Essentials                                [VERIFY: date / active]
 GIAC GFACT — Foundational Cybersecurity Technologies           [VERIFY: date / active]
 CompTIA Security+                                              [VERIFY: date / active]
-In progress: HTB CPTS (2026) · OSCP preparation
+In progress: OSCP (primary · 2026–2027) · HTB CPTS (follow-on)
 
 EXPERIENCE
 
@@ -283,7 +285,8 @@ numnum — Python Security Assessment Framework
   with report-style write-ups.
 
 PROFESSIONAL DEVELOPMENT
-- Hack The Box Academy — CPTS track (in progress)
+- OffSec PEN-200 / OSCP preparation (in progress)
+- Hack The Box Academy — CPTS track (ongoing depth study)
 - PortSwigger Web Security Academy — JWT, OAuth, SSRF modules
 - TCM Security — Web API Pentesting
 ```
@@ -322,8 +325,8 @@ PROFESSIONAL DEVELOPMENT
 ### 7.2 Certification priority
 
 **High priority (pursue in order):**
-1. **CPTS (HTB)** — already in progress; strong practical value, modest cost (~$8–$18/mo Academy sub + $210 exam). Finish by month 10–12.
-2. **OSCP** — ~$1,650 bundled with PEN-200 lab access; still the hiring filter for many consulting firms. Pursue after CPTS to leverage momentum.
+1. **OSCP** — ~$1,650 with PEN-200 lab access; still the hiring filter for most consulting firms and the fastest industry-recognized credential for you given prior exam exposure and your assessment that it's less demanding than CPTS. Target: pass within months 4–7.
+2. **CPTS (HTB)** — modest cost (~$8–$18/mo Academy sub + $210 exam) but a tougher 25-day blind exam. Pursue after OSCP as a depth credential and specialty signal; target: pass within months 10–14. Continue CPTS modules in parallel as a learning track even before the OSCP exam — the content directly supports OSCP prep.
 3. **CRTO (Zero-Point Security)** — ~£399; the most cost-effective "I can red team" credential. Only if targeting red-team roles (Stage 4) — otherwise defer.
 
 **Conditional:**
@@ -347,76 +350,76 @@ PROFESSIONAL DEVELOPMENT
 
 **Assumptions:** 10–12 focused hours/week sustainable (Notion target); first month = October 2026. Each month lists must-do (M) and stretch (S). "Portfolio artifact" means something linkable from your GitHub / blog.
 
-### Phase 1 — Baseline & high-value gaps (Months 1–3, Oct–Dec 2026)
+### Phase 1 — OSCP sprint & baseline (Months 1–4, Oct 2026–Jan 2027)
 
 **Month 1 — Oct 2026**
-- M: Finish 2 CPTS enumeration/footprinting modules.
-- M: Finalize "numnum" README + add a demo asciinema; make the repo presentable (even if private initially).
+- M: OffSec PEN-200 enrollment or resumption; 2 PEN-200 modules complete.
+- M: 1 CPTS module (web app lane) in parallel — content doubles as OSCP prep.
+- M: Finalize "numnum" README + demo; make the repo presentable (private is fine for now).
 - M: Resume rewrite v1 using §6; collect `[VERIFY]` answers.
-- M: Confirm GIAC renewal status for GPEN/GCIH/GSEC; schedule renewals as needed.
-- M: Read Boeing outside-work / IP / COI policy; document in a private file.
+- M: Confirm GIAC renewal status; schedule renewals as needed.
+- M: Read Boeing outside-work / IP / COI policy; document privately.
 - S: Start PortSwigger JWT labs.
-- Weekly: 10–12 hr. Success: resume shared with 1 trusted reviewer; 2 CPTS modules complete.
+- Weekly: 10–12 hr. Success: PEN-200 progress logged; resume shared with 1 trusted reviewer.
 
 **Month 2 — Nov 2026**
-- M: 2 CPTS web app modules; complete PortSwigger JWT + OAuth labs.
-- M: "numnum" — add OWASP API #2 (broken auth) demonstration + JSON report output.
-- M: Draft a 2-page HTB box writeup in **engagement-report format** (exec summary, finding, PoC, impact, remediation). Publish on blog or GitHub.
-- S: Pull 5 live Senior Pentester job postings; build a target-role bullet-match matrix.
+- M: 2 PEN-200 modules; 10+ HTB OSCP-like boxes (TJ Null list).
+- M: 1 CPTS module (web app or AD).
+- M: PortSwigger JWT + OAuth labs complete.
+- M: Draft a 2-page HTB box writeup in **engagement-report format**.
 
 **Month 3 — Dec 2026**
-- M: 2 CPTS modules (web app / AD transition).
+- M: Full OSCP-style practice exam attempt in the OffSec lab.
+- M: 20 cumulative HTB OSCP-like boxes completed with notes.
 - M: Second engagement-style writeup published.
 - M: Resume v2 after bullet-match matrix.
 - M: Quarterly checkpoint (see §9).
-- S: One short conference talk / lunch-and-learn at Boeing on a non-sensitive topic (practice senior-level communication).
-
-### Phase 2 — Advanced technical depth (Months 4–9, Jan–Jun 2027)
 
 **Month 4 — Jan 2027**
-- M: 2 AD attack modules (CPTS).
-- M: PortSwigger SSRF + Access Control labs complete.
-- M: "numnum" — add fuzzing module (injection class, OWASP API #3).
-- S: Begin AWS fundamentals (Security Specialty-aligned).
+- M: **OSCP exam attempt.**
+- M: Keep CPTS module cadence steady (1 module) regardless of exam date.
+- S: Begin PortSwigger SSRF + Access Control labs.
+
+### Phase 2 — Specialty depth & CPTS build (Months 5–10, Feb–Jul 2027)
 
 **Month 5 — Feb 2027**
-- M: 2 CPTS modules.
-- M: Build and document end-to-end AD lab engagement (self-hosted, documented from recon → DA).
-- M: Write 1 blog post on "how I'd pentest an aerospace product system" — generic, no employer IP.
+- M: Retake OSCP if needed; otherwise, 2 CPTS modules (AD + pivoting lane).
+- M: "numnum" — OWASP API #2 (broken auth) demo + JSON report output.
+- M: Begin AWS Security fundamentals.
 
 **Month 6 — Mar 2027**
-- M: 2 CPTS modules; begin mock exam prep.
-- M: AWS Security baseline work; S3 + IAM misconfig lab writeup.
-- M: Quarterly checkpoint — decide: external applications now, or wait until CPTS passed?
+- M: 2 CPTS modules (web app + AD CS).
+- M: End-to-end AD lab engagement documented recon → DA.
+- M: Quarterly checkpoint — external applications now (OSCP in hand) or wait for CPTS?
 
 **Month 7 — Apr 2027**
-- M: Finish any remaining CPTS modules.
-- M: CPTS exam attempt.
-- M: "numnum" v1.0 release — tag it, write release notes.
+- M: 2 CPTS modules; AWS Security baseline + S3/IAM misconfig writeup.
+- M: "numnum" — fuzzing module (OWASP API #3).
+- M: First aerospace-angle blog post (generic, no employer IP).
 
 **Month 8 — May 2027**
-- M: Retake CPTS exam if needed; otherwise start OSCP PEN-200.
-- M: Begin PortSwigger / HackTricks advanced web (SSTI, deserialization).
-- S: First outside conference submission (BSides Seattle talk CFP).
+- M: 2 CPTS modules; begin CPTS mock exam prep.
+- M: "numnum" v1.0 release — tag, release notes, demo video.
+- S: First outside conference submission (BSides Seattle CFP).
 
 **Month 9 — Jun 2027**
-- M: OSCP prep in earnest — HTB OSCP-like boxes.
-- M: Publish a tool, module, or research write-up substantial enough to serve as "principal-level evidence."
-
-### Phase 3 — Senior-level capability demonstration (Months 10–15, Jul–Dec 2027)
+- M: Finish remaining CPTS modules; full mock exam in Pro Lab.
+- M: Publish a tool/module/research write-up at "principal-level evidence" quality.
 
 **Month 10 — Jul 2027**
-- M: OSCP exam attempt.
-- M: Build a methodology document (your personal pentest methodology) — this is a consulting-firm interview artifact.
+- M: **CPTS exam attempt.**
+- M: Build personal pentest methodology document — consulting-firm interview artifact.
+
+### Phase 3 — External market entry (Months 11–15, Aug–Dec 2027)
 
 **Month 11 — Aug 2027**
-- M: Retake OSCP if needed.
+- M: Retake CPTS if needed.
 - M: Start applying to 3–5 external Senior Pentester / Sr. Consultant roles. Negotiate using §3 anchors.
-- M: Resume v3 (post-CPTS/OSCP).
+- M: Resume v3 (post-OSCP + post-CPTS).
 
 **Month 12 — Sep 2027**
 - M: Interview reps; iterate on gaps found.
-- M: Decide: accept external offer, use external offer to leverage Boeing promotion, or stay-and-build.
+- M: Decide: accept external offer, use offer to leverage Boeing promotion, or stay-and-build.
 
 **Month 13 — Oct 2027**
 - M: Begin Lead/Principal preparation: own at least one engagement end-to-end at current employer with full scoping + readout.
@@ -467,9 +470,9 @@ PROFESSIONAL DEVELOPMENT
 
 ### 8.1 Weekly time budget and resilience
 
-- Default: Mon 2h degree · Wed 2h CPTS · Fri 2h portfolio · Sat 3h labs · Sun 2–3h review.
-- If work intensifies: drop portfolio Friday and Sun review first; keep CPTS and Sat labs.
-- If falling behind >2 weeks on CPTS: cut stretch items, defer PortSwigger side-tracks, hold the plan rather than add hours and burn out.
+- Default: Mon 2h degree · Wed 2h primary cert (OSCP → CPTS once passed) · Fri 2h portfolio · Sat 3h labs · Sun 2–3h review.
+- If work intensifies: drop portfolio Friday and Sun review first; keep primary-cert study and Sat labs.
+- If falling behind >2 weeks on the primary cert: cut stretch items, defer PortSwigger side-tracks, hold the plan rather than add hours and burn out.
 
 ---
 
@@ -477,10 +480,10 @@ PROFESSIONAL DEVELOPMENT
 
 | Checkpoint | Measurable outcomes | Decision gate |
 |---|---|---|
-| **Q1 (Dec 2026)** | Resume v2; 6 CPTS modules; 2 engagement-style writeups; numnum presentable | Continue CPTS vs. accelerate OSCP? Default: continue CPTS. |
-| **Q2 (Mar 2027)** | 10+ CPTS modules; AWS baseline; one aerospace-angle blog post | External apply now, or wait for CPTS? Default: wait. |
-| **Q3 (Jun 2027)** | CPTS passed; numnum v1.0; first conference submission | OSCP next, or defer? Default: OSCP next unless offer in hand. |
-| **Q4 (Sep 2027)** | OSCP passed; 3–5 external interviews completed | Accept external offer, leverage internally, or stay? Decide based on live comp data. |
+| **Q1 (Dec 2026)** | Resume v2; 20 OSCP-like boxes done; mock exam attempted; numnum presentable | Exam-ready for OSCP in Jan, or push one month? Default: sit it. |
+| **Q2 (Mar 2027)** | OSCP passed; AWS baseline; 4+ CPTS modules; one aerospace-angle blog post | External apply now (OSCP in hand), or wait for CPTS? Default: open to recruiters, don't pivot employers yet. |
+| **Q3 (Jun 2027)** | CPTS mock exam cleared; numnum v1.0; first conference submission | Sit CPTS in July, or defer to focus on applications? Default: sit it. |
+| **Q4 (Sep 2027)** | CPTS passed; 3–5 external interviews completed | Accept external offer, leverage internally, or stay? Decide based on live comp data. |
 | **Q5 (Dec 2027)** | At least one engagement owned end-to-end; mentoring documented; CRTO decision | CRTO yes/no based on red-team interest + budget. |
 | **Q6 (Mar 2028)** | Methodology doc, SOW/test-plan templates, specialty content library ≥6 pieces | Principal internal, Principal external, or indie prep? |
 | **Q7 (Jun 2028)** | Pricing model, MSA/SOW, insurance quotes, financial readiness check | Pilot small engagement vs. defer. |
